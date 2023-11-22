@@ -1,0 +1,23 @@
+extends /layout
+
+block content
+  h1= title
+
+  ul
+    each entry in bookInstanceList
+      li
+        a(href=entry.url) #{ entry.book.title } : #{ entry.imprint }
+        | #{ ' – ' }
+        if entry.status === 'Available'
+          span.text-success #{ entry.status }
+        else if entry.status === 'Maintenance'
+          span.text-danger #{ entry.status }
+        else
+          span.text-warning #{ entry.status }
+        if entry.status !== 'Available'
+          |
+          |
+          span (Due: #{ entry.due_back_formatted } )
+
+    else
+      li There are no book copies in this library.
