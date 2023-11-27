@@ -17,7 +17,7 @@ block content
         if entry.status !== 'Available'
           |
           |
-          span (Due: #{ entry.due_back_formatted } )
+          span (Due: #{ entry.due_back_formatted || 'Not specified' } )
 
     else
       li There are no book copies in this library.

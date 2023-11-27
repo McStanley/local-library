@@ -26,9 +26,15 @@ block content
         p.text-warning #{ instance.status }
       p #[strong Imprint:] #{ instance.imprint }
       if instance.status !== 'Available'
-        p #[strong Due back:] #{ instance.due_back }
+        p #[strong Due back:] #{ instance.due_back_formatted || 'Not specified' }
       p #[strong Id:]
         a(href=instance.url) #{ instance._id }
 
     else
       p There are no copies of this book in the library.
+
+  hr
+  p
+    a(href=book.url + '/update') Update book
+  p
+    a(href=book.url + '/delete') Delete book

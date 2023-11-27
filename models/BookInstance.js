@@ -17,9 +17,15 @@ const BookInstanceSchema = new Schema({
 
 BookInstanceSchema.virtual('due_back_formatted').get(
   function getDueBackFormatted() {
-    return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
+    return this.due_back
+      ? DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED)
+      : null;
   },
 );
+
+BookInstanceSchema.virtual('due_back_iso').get(function getDueBackISO() {
+  return this.due_back ? DateTime.fromJSDate(this.due_back).toISODate() : null;
+});
 
 BookInstanceSchema.virtual('url').get(function getUrl() {
   return `/catalog/book-instance/${this._id}`;

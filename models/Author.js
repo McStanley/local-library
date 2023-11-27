@@ -32,6 +32,18 @@ AuthorSchema.virtual('lifespan').get(function getLifespan() {
   return `${birth} – ${death}`;
 });
 
+AuthorSchema.virtual('date_of_birth_iso').get(function getDateOfBirthISO() {
+  return this.date_of_birth
+    ? DateTime.fromJSDate(this.date_of_birth).toISODate()
+    : null;
+});
+
+AuthorSchema.virtual('date_of_death_iso').get(function getDateOfDeathISO() {
+  return this.date_of_death
+    ? DateTime.fromJSDate(this.date_of_death).toISODate()
+    : null;
+});
+
 AuthorSchema.virtual('url').get(function getUrl() {
   return `/catalog/author/${this._id}`;
 });
