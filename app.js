@@ -1,6 +1,7 @@
 const compression = require('compression');
 const createError = require('http-errors');
 const express = require('express');
+const favicon = require('serve-favicon');
 const helmet = require('helmet');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -51,6 +52,7 @@ app.use(
   }),
 );
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
